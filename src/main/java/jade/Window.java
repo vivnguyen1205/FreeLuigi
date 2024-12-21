@@ -60,6 +60,10 @@ public class Window {
 
 
         }
+
+        glfwSetCursorPosCallback(glfwWindow,MouseListener::mousePosCallBack); //:: shorthand for lambda expression
+        glfwSetMouseButtonCallback(glfwWindow,MouseListener::mouseButtonCallBack);
+        glfwSetScrollCallback(glfwWindow, MouseListener:: mouseScrollCallback);
         // configure GLFW
         glfwDefaultWindowHints(); // gives default window hints**
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
