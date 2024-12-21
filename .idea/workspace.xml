@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aea25540-8e8e-474f-ad45-4a0f543ce8be" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/jade/LevelEditorScene.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jade/LevelScene.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jade/Scene.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/util/Time.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jade/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jade/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jade/LevelEditorScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jade/LevelEditorScene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1734733569541</updated>
       <workItem from="1734733570637" duration="493000" />
-      <workItem from="1734734071686" duration="14063000" />
+      <workItem from="1734734071686" duration="14120000" />
     </task>
     <servers />
   </component>

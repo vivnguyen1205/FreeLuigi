@@ -15,5 +15,5 @@ public class LevelEditorScene extends Scene{
 
         }
     }
-}
+
 
