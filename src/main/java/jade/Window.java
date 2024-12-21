@@ -3,6 +3,7 @@ package jade;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
+import util.Time;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
@@ -15,10 +16,12 @@ public class Window {
     private int width, height;
     private String title;
     private long glfwWindow;
-    private float r,g,b,a;
+    public float r,g,b,a;
     private static Window window = null; // private static window object
     private boolean fadeToBlack = false;
+    private static Scene currentScene;
     private Window() { // constructor
+
         this.width = 1920; // giving standard hd definition
         this.height = 1080;
         this.title = "Luigi";
@@ -27,6 +30,22 @@ public class Window {
         b=1;
         a=0;
 
+    }
+    public static void changeScene(int newScene){
+        switch (newScene){
+            case 0:
+                currentScene = new LevelEditorScene();
+                currentScene.init();
+                break;
+            case 1:
+
+                currentScene = new LevelScene();
+                currentScene.init();
+                        break;
+            default:
+                assert false: "unknown scene" + newScene + ".";
+                break;
+        }
     }
 
     public static Window get() {// new method that returns  window
@@ -72,7 +91,7 @@ public class Window {
         glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
         //create window
         glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL); // memory address where window  it is in the memory space
-        if (glfwWindow == NULL){ // window wasnt created for some reason
+        if (glfwWindow == NULL){ // window wasn't created for some reason
             throw new IllegalStateException("failed to create the GLFW window ");
         }
         glfwSetCursorPosCallback(glfwWindow,MouseListener::mousePosCallBack); //:: shorthand for lambda expression
@@ -86,27 +105,30 @@ public class Window {
         // make the window visible
         glfwShowWindow(glfwWindow); // long number pointer to our window
         GL.createCapabilities(); // important!!
+        Window.changeScene(0);
 
     }
     public void loop(){
+        float beginTime = Time.getTime();
+        float endTime = Time.getTime();
+        float dt = -1.0f;
         // loop through
         while(!glfwWindowShouldClose(glfwWindow)){
             // first poll events
             glfwPollEvents();
             glClearColor(r,g, b,a);
-            if(fadeToBlack){ //fade to black when space key is set by decreasing rgb by constant amount every frame until black
-                r = Math.max(r-0.01f, 0);
-                g = Math.max(g-0.01f, 0);
-                b = Math.max(b - 0.01f,0);
 
-            }
             glClear(GL_COLOR_BUFFER_BIT); // use color buffer bit and flush to entire screen
-            if(KeyListener.isKeyPressed(GLFW_KEY_SPACE)){
-                fadeToBlack = true;
+
+            if (dt>=0) {
+                currentScene.update(dt);
 
             }
 
             glfwSwapBuffers(glfwWindow);
+            endTime = Time.getTime(); // records when game ends end of loop
+            dt = endTime - beginTime; // time of game
+            beginTime = endTime; // new begin time
 
         }
 
