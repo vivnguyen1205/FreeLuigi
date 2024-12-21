@@ -1,1 +1,1 @@
-# luigigame
+# Free Luigi
