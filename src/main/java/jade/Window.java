@@ -1,6 +1,7 @@
 package jade;
 
 import org.lwjgl.Version;
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 import util.Time;
@@ -65,6 +66,7 @@ public class Window {
         loop();
 
 
+
         // free memory once exit loop
         glfwFreeCallbacks(glfwWindow);
         glfwDestroyWindow(glfwWindow);
@@ -84,12 +86,19 @@ public class Window {
 
 
         }
+
         // configure GLFW
         glfwDefaultWindowHints(); // gives default window hints**
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
         glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
         //create window
+        GLFW.glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        GLFW.glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        GLFW.glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
+
+
         glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL); // memory address where window  it is in the memory space
         if (glfwWindow == NULL){ // window wasn't created for some reason
             throw new IllegalStateException("failed to create the GLFW window ");
