@@ -9,6 +9,7 @@ import java.nio.IntBuffer;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
+import renderer.Texture;
 import util.Time;
 
 import static org.lwjgl.opengl.GL20.*;
@@ -44,11 +45,11 @@ public class LevelEditorScene extends Scene {
     private float[] vertexArray = {
 
 
-            //position                 //colour
-            100.5f, -0.5f, 0.0f,       1.0f, 0.0f, 0.0f, 1.0f,  // top right
-            -0.5f, 100.5f, 0.0f,      0.0f, 1.0f, 0.0f, 1.0f,  // top left
-            100.5f, 100.5f, 0.0f,      0.0f, 0.0f, 1.0f, 1.0f,  // bottom right
-            -0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 0.0f, 1.0f,  // bottom left
+            //position                 //colour                       // UV coordinates
+            100.5f, -0.5f, 0.0f,       1.0f, 0.0f, 0.0f, 1.0f,        1,0, // top right
+            -0.5f, 100.5f, 0.0f,      0.0f, 1.0f, 0.0f, 1.0f,         0,1,// top left
+            100.5f, 100.5f, 0.0f,      0.0f, 0.0f, 1.0f, 1.0f,        1,1, // bottom right
+            -0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 0.0f, 1.0f,           0,0 // bottom left
     };
 
     // IMPORTANT MUst be in counter-clockwise order
@@ -61,6 +62,7 @@ public class LevelEditorScene extends Scene {
     };
     private int vaoID, vboID, eboID; //vertex array object, vertex buffer object and element buffer oject
     private Shader defaultShader;
+    private Texture testTexture;
     public LevelEditorScene() { // contsructor
 
     }
@@ -70,6 +72,7 @@ public class LevelEditorScene extends Scene {
         this.camera = new Camera(new Vector2f());
         defaultShader = new Shader("assets/shaders/default.glsl");
         defaultShader.compile();
+        this.testTexture = new Texture("assets/images/testImage.png");
 
         // generate VAO, VBO, EBO buffer objects and send to GPU
         vaoID = glGenVertexArrays();
@@ -93,14 +96,15 @@ public class LevelEditorScene extends Scene {
  // add vertex attribute pointer
         int positionsSize = 3;
         int colorSize = 4;
+        int uvSize = 2;
         int floatSizeBytes = 4;
-        int vertexSizeBytes = (positionsSize+ colorSize)*floatSizeBytes;
+        int vertexSizeBytes = (positionsSize+ colorSize+ uvSize)*Float.BYTES;
         glVertexAttribPointer(0, positionsSize, GL_FLOAT, false, vertexSizeBytes, 0);
         glEnableVertexAttribArray(0);
-        glVertexAttribPointer(1, colorSize, GL_FLOAT, false, vertexSizeBytes, positionsSize*floatSizeBytes );
+        glVertexAttribPointer(1, colorSize, GL_FLOAT, false, vertexSizeBytes, positionsSize*Float.BYTES );
         glEnableVertexAttribArray(1);
-
-
+        glVertexAttribPointer(2,uvSize, GL_FLOAT, false, vertexSizeBytes, (positionsSize+colorSize)* Float.BYTES);
+        glEnableVertexAttribArray(2);
     }
 
 
