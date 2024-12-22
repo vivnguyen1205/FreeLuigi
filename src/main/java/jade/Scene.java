@@ -1,9 +1,12 @@
 package jade;
 
+import renderer.Renderer;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Scene {
+    protected Renderer renderer = new Renderer();
     protected Camera camera;
     private  boolean isRunning = false;
     protected List<GameObject> gameObjects = new ArrayList<>();
@@ -16,10 +19,16 @@ public abstract class Scene {
 
     }
     public abstract void update(float dt); // updates time dt
+    public Camera camera(){
+        return this.camera;
+    }
+
+
     public void start(){    //start game object, check if game is running  , if not then do something
         // when game started, start game objects
         for (GameObject go : gameObjects){
             go.start();
+            this.renderer.add(go);
 
         }
         isRunning = true;
@@ -31,6 +40,7 @@ public abstract class Scene {
         }else{ // when rinning, add game obejcts to list
             gameObjects.add(go);
             go.start();
+            this.renderer.add(go);
         }
 
     }
