@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aea25540-8e8e-474f-ad45-4a0f543ce8be" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/components/FontRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/components/SpriteRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jade/Component.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jade/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/shaders/default.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/assets/shaders/default.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jade/LevelEditorScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jade/LevelEditorScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/renderer/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/renderer/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jade/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jade/Scene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jade/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jade/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +109,7 @@
       <option name="presentableId" value="Default" />
       <updated>1734733569541</updated>
       <workItem from="1734733570637" duration="493000" />
-      <workItem from="1734734071686" duration="43618000" />
+      <workItem from="1734734071686" duration="47021000" />
     </task>
     <servers />
   </component>
@@ -136,7 +140,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/jade/Window.java</url>
-          <line>118</line>
+          <line>119</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

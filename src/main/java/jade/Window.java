@@ -42,6 +42,7 @@ public class Window {
 
                 currentScene = new LevelScene();
                 currentScene.init();
+                currentScene.start();
                         break;
             default:
                 assert false: "unknown scene" + newScene + ".";
