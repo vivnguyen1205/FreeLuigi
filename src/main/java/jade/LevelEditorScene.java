@@ -9,6 +9,8 @@ import java.nio.IntBuffer;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
+import util.Time;
+
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
@@ -40,10 +42,12 @@ public class LevelEditorScene extends Scene {
 
 
     private float[] vertexArray = {
+
+
             //position                 //colour
-            0.5f, -0.5f, 0.0f,       1.0f, 0.0f, 0.0f, 1.0f,  // top right
-            -0.5f, 0.5f, 0.0f,      0.0f, 1.0f, 0.0f, 1.0f,  // top left
-            0.5f, 0.5f, 0.0f,      0.0f, 0.0f, 1.0f, 1.0f,  // bottom right
+            100.5f, -0.5f, 0.0f,       1.0f, 0.0f, 0.0f, 1.0f,  // top right
+            -0.5f, 100.5f, 0.0f,      0.0f, 1.0f, 0.0f, 1.0f,  // top left
+            100.5f, 100.5f, 0.0f,      0.0f, 0.0f, 1.0f, 1.0f,  // bottom right
             -0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 0.0f, 1.0f,  // bottom left
     };
 
@@ -103,10 +107,15 @@ public class LevelEditorScene extends Scene {
     @Override
 
     public void update(float dt) { //transition from leveleditor scene to level scene
+        camera.position.x -= dt * 50.0f;
+        camera.position.y -= dt * 20.0f;
+
         defaultShader.use();
         defaultShader.uploadMat4f("uProjection", camera.getProjectionMatrix());
         defaultShader.uploadMat4f("uView", camera.getViewMatrix());
-//
+        defaultShader.uploadFloat("uTime", Time.getTime());
+
+        //
 //        defaultShader.uploadMat4f("uProjection", camera.getProjectionMatrix());
 //        defaultShader.uploadMat4f("uView", camera.getViewMatrix());
 
