@@ -6,7 +6,9 @@ import java.awt.event.KeyEvent;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
-
+import org.joml.Matrix4f;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
@@ -61,6 +63,7 @@ public class LevelEditorScene extends Scene {
 
     @Override
     public void init() {
+        this.camera = new Camera(new Vector2f());
         defaultShader = new Shader("assets/shaders/default.glsl");
         defaultShader.compile();
 
@@ -96,9 +99,17 @@ public class LevelEditorScene extends Scene {
 
     }
 
+
     @Override
+
     public void update(float dt) { //transition from leveleditor scene to level scene
         defaultShader.use();
+        defaultShader.uploadMat4f("uProjection", camera.getProjectionMatrix());
+        defaultShader.uploadMat4f("uView", camera.getViewMatrix());
+//
+//        defaultShader.uploadMat4f("uProjection", camera.getProjectionMatrix());
+//        defaultShader.uploadMat4f("uView", camera.getViewMatrix());
+
         // bind the VAO that were using
         glBindVertexArray(vaoID);
         //enable the bertex attribute pointera
@@ -115,6 +126,8 @@ public class LevelEditorScene extends Scene {
 
 
     }
+
+
 }
 
 

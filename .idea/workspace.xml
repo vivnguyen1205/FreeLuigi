@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aea25540-8e8e-474f-ad45-4a0f543ce8be" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/jade/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/shaders/default.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/assets/shaders/default.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jade/LevelEditorScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jade/LevelEditorScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jade/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jade/Scene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/renderer/Shader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/renderer/Shader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1734733569541</updated>
       <workItem from="1734733570637" duration="493000" />
-      <workItem from="1734734071686" duration="32495000" />
+      <workItem from="1734734071686" duration="36570000" />
     </task>
     <servers />
   </component>
@@ -135,8 +137,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/renderer/Shader.java</url>
-          <line>40</line>
+          <line>44</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/renderer/Shader.java</url>
+          <line>134</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
