@@ -9,6 +9,8 @@ import org.joml.Vector4f;
 import util.AssetPool;
 
 public class LevelEditorScene extends Scene {
+    private GameObject obj1;
+    private Spritesheet sprites;
 
     public LevelEditorScene() { // contsructor
 
@@ -18,9 +20,9 @@ public class LevelEditorScene extends Scene {
     public void init() {
         loadResources();
         this.camera = new Camera(new Vector2f());
-        Spritesheet sprites =  AssetPool.getSpriteSheet("assets/images/spriteSheet.png");
+         sprites =  AssetPool.getSpriteSheet("assets/images/spriteSheet.png");
 
-      GameObject obj1 = new GameObject("object1",new Transform(new Vector2f(100,100), new Vector2f(250,256)));
+      obj1 = new GameObject("object1",new Transform(new Vector2f(100,100), new Vector2f(250,256)));
 
       obj1.addComponent(new SpriteRenderer(sprites.getSprite(0)));
         this.addGameObjectToScene(obj1);
@@ -39,14 +41,25 @@ public class LevelEditorScene extends Scene {
     }
 
 
+
+    private int spriteIndex = 0;
+    private float spriteFlipTime = 0.2f;
+    private float spriteFlipTimeLeft = 0.0f;
     @Override
 
     public void update(float dt) { //transition from leveleditor scene to level scene
-System.out.println("fps"+ (1.0f/dt));
-//        camera.position.x -= dt * 50.0f;
-//        camera.position.y -= dt * 20.0f;
+        spriteFlipTimeLeft -= dt;
+        if(spriteFlipTimeLeft <= 0){
+            spriteFlipTimeLeft = spriteFlipTime;
+            spriteIndex++;
+            if(spriteIndex > 4){
+                spriteIndex = 0;
+            }
+          obj1.getComponent(SpriteRenderer.class).setSprite(sprites.getSprite(spriteIndex));
 
+        }
 
+        obj1.transform.position.x += 10 * dt;
         for(GameObject go: this.gameObjects){
             go.update(dt);
         }
