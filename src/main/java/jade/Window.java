@@ -4,7 +4,6 @@ import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
-import util.Time;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
@@ -122,8 +121,8 @@ public class Window {
 
     }
     public void loop(){
-        float beginTime = Time.getTime();
-        float endTime = Time.getTime();
+        float beginTime = (float)glfwGetTime();
+        float endTime;
         float dt = -1.0f;
         // loop through
         while(!glfwWindowShouldClose(glfwWindow)){
@@ -139,7 +138,7 @@ public class Window {
             }
 
             glfwSwapBuffers(glfwWindow);
-            endTime = Time.getTime(); // records when game ends end of loop
+            endTime = (float)glfwGetTime(); // records when game ends end of loop
             dt = endTime - beginTime; // time of game
             beginTime = endTime; // new begin time
 
