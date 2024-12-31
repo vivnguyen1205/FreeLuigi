@@ -117,6 +117,9 @@ public class Window {
         // make the window visible
         glfwShowWindow(glfwWindow); // long number pointer to our window
         GL.createCapabilities(); // important!!
+
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         Window.changeScene(0);
 
     }
