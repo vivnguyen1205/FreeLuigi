@@ -1,14 +1,14 @@
 package jade;
 
+//import components.LevelEditorScene;
 import org.lwjgl.Version;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
-import util.Time;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL20.GL_SHADING_LANGUAGE_VERSION;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 
@@ -26,10 +26,10 @@ public class Window {
         this.width = 1920; // giving standard hd definition
         this.height = 1080;
         this.title = "Luigi";
-        r = 1;
-        g=1;
-        b=1;
-        a=0;
+        r = 0;
+        g=0;
+        b=0;
+        a=1;
 
     }
     public static void changeScene(int newScene){
@@ -37,6 +37,7 @@ public class Window {
             case 0:
                 currentScene = new LevelEditorScene();
                 currentScene.init();
+                currentScene.start();
                 break;
             case 1:
 
@@ -97,10 +98,10 @@ public class Window {
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
         glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
         //create window
-        GLFW.glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        GLFW.glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-        GLFW.glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
+//        GLFW.glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+//        GLFW.glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+//        GLFW.glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+//        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
 
 
         glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL); // memory address where window  it is in the memory space
@@ -110,7 +111,7 @@ public class Window {
         glfwSetCursorPosCallback(glfwWindow,MouseListener::mousePosCallBack); //:: shorthand for lambda expression
         glfwSetMouseButtonCallback(glfwWindow,MouseListener::mouseButtonCallBack);
         glfwSetScrollCallback(glfwWindow, MouseListener:: mouseScrollCallback);
-        glfwSetKeyCallback(glfwWindow,KeyListener:: keyCallBack);
+//        glfwSetKeyCallback(glfwWindow,KeyListener:: keyCallBack);
         // make the OpenGL context current
         glfwMakeContextCurrent(glfwWindow);
         // enable v-sync  - just swap it every frame, there is no wait time, go according to refresh rate of the monitor
@@ -118,12 +119,16 @@ public class Window {
         // make the window visible
         glfwShowWindow(glfwWindow); // long number pointer to our window
         GL.createCapabilities(); // important!!
+        System.out.println("OpenGL Version: " + glGetString(GL_VERSION));
+        System.out.println("GLSL Version: " + glGetString(GL_SHADING_LANGUAGE_VERSION));
+
         Window.changeScene(0);
+
 
     }
     public void loop(){
-        float beginTime = Time.getTime();
-        float endTime = Time.getTime();
+        float beginTime = (float)glfwGetTime();
+        float endTime;
         float dt = -1.0f;
         // loop through
         while(!glfwWindowShouldClose(glfwWindow)){
@@ -139,7 +144,7 @@ public class Window {
             }
 
             glfwSwapBuffers(glfwWindow);
-            endTime = Time.getTime(); // records when game ends end of loop
+            endTime = (float)glfwGetTime();; // records when game ends end of loop
             dt = endTime - beginTime; // time of game
             beginTime = endTime; // new begin time
 

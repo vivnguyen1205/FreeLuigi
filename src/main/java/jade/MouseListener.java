@@ -26,7 +26,7 @@ public class MouseListener {
     }
     public static MouseListener get(){
         if (MouseListener.instance == null ){ // if instance is null (will be first time) set everything to the values in mouselistener
-         instance = new MouseListener();
+            MouseListener.instance = new MouseListener();
 
 
         }

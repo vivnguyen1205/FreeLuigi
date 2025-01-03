@@ -1,44 +1,57 @@
 package jade;
 
-import java.security.Key;
-
 import java.util.Arrays;
 
 import static org.lwjgl.glfw.GLFW.*;
 
+public class KeyListener {
+    private static KeyListener instance;
+    private boolean keyPressed[] = new boolean[350];
 
-public class KeyListener {// singleton pattern
-    private static KeyListener instance; // instance key listener
-    public boolean keyPressed[] = new boolean[350];
+//    private boolean keyPressed[] = new boolean[GLFW_KEY_LAST + 1];
+//    private boolean keyBeginPress[] = new boolean[GLFW_KEY_LAST + 1];
 
-    private KeyListener(){
+    private KeyListener() {
 
     }
-    public static KeyListener get(){
-        if(KeyListener.instance == null){
+    public static KeyListener get() {
+        if (KeyListener.instance == null) {
             KeyListener.instance = new KeyListener();
-
         }
         return KeyListener.instance;
     }
-    public static void keyCallBack(long window, int key,  int scancode, int action, int mods){
-        if(action == GLFW_PRESS){ // key is being pressed
-            get().keyPressed[key]=true;
+    public static void keyCallback(long window, int key, int scancode, int action, int mods) {
+        if (action == GLFW_PRESS) {
+            get().keyPressed[key] = true;
         } else if (action == GLFW_RELEASE) {
-            get().keyPressed[key] = false; // key is released
-
+            get().keyPressed[key] = false;
         }
-
-
     }
-    public static boolean isKeyPressed(int keyCode){
-        if(keyCode< get().keyPressed.length){
-            return get().keyPressed[keyCode];
-
-        }
-        else{
-            return false;
-        }
-
+    public static boolean isKeyPressed(int keyCode) {
+        return get().keyPressed[keyCode];
     }
+
+//    public static void endFrame() {
+//        Arrays.fill(get().keyBeginPress, false);
+//    }
+
+
+
+
+
+//    public static boolean isKeyPressed(int keyCode) {
+//        if (keyCode <= GLFW_KEY_LAST && keyCode >= 0) {
+//            return get().keyPressed[keyCode];
+//        }
+//
+//        return false;
+//    }
+
+//    public static boolean keyBeginPress(int keyCode) {
+//        if (keyCode <= GLFW_KEY_LAST && keyCode >= 0) {
+//            return get().keyBeginPress[keyCode];
+//        }
+//
+//        return false;
+//    }
 }

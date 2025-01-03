@@ -8,25 +8,19 @@ import java.util.List;
 public abstract class Scene {
     protected Renderer renderer = new Renderer();
     protected Camera camera;
-    private  boolean isRunning = false;
+    private boolean isRunning = false;
     protected List<GameObject> gameObjects = new ArrayList<>();
-    public Scene(){
 
+    public Scene() {
+    }
+
+    public void init() {
 
 
     }
-    public void init(){
-
-    }
-    public abstract void update(float dt); // updates time dt
-    public Camera camera(){
-        return this.camera;
-    }
-
-
-    public void start(){    //start game object, check if game is running  , if not then do something
+    public void start() {    //start game object, check if game is running  , if not then do something
         // when game started, start game objects
-        for (GameObject go : gameObjects){
+        for (GameObject go : gameObjects) {
             go.start();
             this.renderer.add(go);
 
@@ -37,12 +31,24 @@ public abstract class Scene {
         if(!isRunning){
             gameObjects.add(go);
 
-        }else{ // when rinning, add game obejcts to list
+        }else{ // when running, add game obejcts to list
             gameObjects.add(go);
             go.start();
             this.renderer.add(go);
         }
 
     }
+
+    public abstract void update(float dt); // updates time dt
+
+    public Camera camera() {
+        return this.camera;
+    }
+
+
+
+
+
+
 
 }

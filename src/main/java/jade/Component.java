@@ -1,11 +1,13 @@
 package jade;
 
 public abstract class Component {
-    public abstract void update(float dt);
+    public GameObject gameObject = null;
     public void start(){
 
     }
-    public GameObject gameObject = null;
+    public abstract void update(float dt);
+
+
 
 
 

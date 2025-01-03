@@ -24,7 +24,7 @@ public class Renderer {
     private void add(SpriteRenderer sprite){
         boolean added = false;
         for(RenderBatch batch : batches){
-            if(batch.hasRoom){
+            if(batch.hasRoom()){
                 batch.addSprite(sprite);
                 added = true;
                 break;
